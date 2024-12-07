@@ -1,4 +1,15 @@
 {
-    "builds":[{"src": "main.py", "use": "@vercel/python"}],
-    "routes":[{"src": "/{.*}", "dest": "main.py"}] 
+  "version": 2,
+  "builds": [
+    {
+      "src": "main.py",          // Entry point for your Flask app
+      "use": "@vercel/python"    // Tells Vercel to use the Python runtime
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",            // Matches all routes
+      "dest": "main.py"          // Routes all requests to main.py
+    }
+  ]
 }
