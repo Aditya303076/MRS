@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Health Care Center</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  </head>
+
+    <style>
+        body{
+            scroll-behavior: smooth;
+            transition: all 2s ease-in-out;
+            background-color: lightslategrey;
+            height: 100vh;
+        }
+        .nav-item .nav-link:hover{
+            background-color:skyblue;
+        }
+        .container{
+            display:flex;
+            background-color:black;
+            flex-wrap: wrap; 
+            color: white; 
+            width:calc(100vw - 1%);
+            border-radius: 15px;
+            gap: 10px;
+            padding: 20px;
+            justify-content: space-around;
+            height: calc(100vh - 15%);
+        }
+        .child{
+            border:2px solid white;
+            width:calc(100% - 51%);
+            padding:10px;
+            border-radius: 15px;
+            height: 100%;
+        }
+        .card.text-center{
+            width: 100%;
+            border-radius: 15px;
+        }
+        @media (max-width: 1300px) {
+            .container{
+                height: max-content;
+            }
+            .child {
+                width: 100%; /* Full width on smaller screens */
+            }
+            .card.text-center{
+                width: 100%;  
+                height: max-content; 
+            }
+            .card.text-center .card-header{
+                    display: flex;
+                    justify-content: center;
+            }
+
+        }
+
+        .card-body{
+            color: black;
+        }
+
+        .button:active{
+            color:blue;
+        }
+        
+
+
+    </style>
+</head>
+<body>
+    
+<h1 class="mt-4 my-4 text-center text-green">It can cause you at this level if you don't be serious</h1>
+ <div class="container my-4 mt-4">
+<!--    <div class="child" style="display: grid;align-items: center;">
+        <form action="/predict" method="post" style="display: flex;flex-direction:column;">
+            <div class="form-group">
+                <label for="symptoms">Select Symptoms:</label>
+                <input type="text" class="form-control", id="symptoms" name="symptoms" placeholder="type systems such as itching, sleeping, aching etc">
+
+            </div>
+            <br>
+            <button type="button" id="startSpeechRecognition" class="btn btn-primary" style="margin-left:3px;border:1px solid white; border-radius:20px;">
+                Start Speech Recognition
+            </button>
+            <br>
+
+            Display the transcribed text here
+            <div name="mysysms" id="transcription"></div>
+
+            {% if message %}
+            <p>{{ message }}</p>
+            {% endif %}
+            <br>
+
+            <button type="submit" class="btn btn-danger btn-lg" style="width: 100%; padding: 14px; margin-bottom: 5px;">Predict</button>
+        </form>
+    </div> -->
+
+    {% if predicted_disease %}
+    <div class="card text-center">
+        <div class="card-header">
+            
+          <ul class="nav nav-pills card-header-pills" style="justify-content: center;">
+            
+            <li class="nav-item">
+                <button class="nav-link" type="button" id="1" onclick="showDiv('diseaseModal', this.id)">Disease</button>
+            </li> 
+            <li class="nav-item">
+                <button class="nav-link" type="button" id="2" onclick="showDiv('descriptionModal', this.id)" >Description</button>
+            </li>
+            <li class="nav-item">
+                <button class="nav-link" type="button" id="3" onclick="showDiv('precautionModal', this.id)" >Precaution</button>
+            </li>
+            <li class="nav-item">
+                <button class="nav-link" type="button" id="4" onclick="showDiv('medicationsModal', this.id)" >Medications</button>
+            </li>
+            <li class="nav-item">
+                <button class="nav-link" type="button" id="5" onclick="showDiv('workoutsModal', this.id)" >Workouts</button>
+            </li>
+            <li class="nav-item">
+                <button class="nav-link" type="button" id="6" onclick="showDiv('dietsModal', this.id)" >Diets</button>
+            </li>
+          </ul>
+        </div>
+        <div class="card-body">
+            <div id="diseaseModal" style="display: none;">
+                <p>{{ predicted_disease }}</p>
+            </div>
+            <div id="descriptionModal" style="display: none;">
+                <p>{{ dis_des }}</p>     
+            </div>
+            <div id="precautionModal"  style="display: none;">
+                   <ul>
+                        {% for i in my_precautions %}
+                            <li>{{ i }}</li>
+                        {% endfor %}
+                    </ul>
+            </div>
+            <div id="medicationsModal" style="display: none;">
+                    <ul>
+                        
+                        {% for i in medications %}
+                            <li>{{ i }}</li>
+                        {% endfor %}
+                    </ul>
+            </div>
+            <div id="workoutsModal" style="display: none;">
+                
+                    <ul>
+                        {% for i in workout %}
+                            <li>{{ i }}</li>
+                        {% endfor %}
+                    </ul>
+                
+            </div>
+            <div id="dietsModal" style="display: none;" >
+                
+                    <ul>
+                        {% for i in my_diet %}
+                            <li>{{ i }}</li>
+                        {% endfor %}
+                    </ul>
+                
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</div>
+    <script>
+
+
+        function showDiv(divId, bId) {
+            // List of all possible divs to hide
+            var divIds = ['diseaseModal', 'descriptionModal', 'precautionModal', 'medicationsModal', 'workoutsModal', 'dietsModal'];
+            
+            // Hide all divs
+            divIds.forEach(function(id) {
+                var div = document.getElementById(id);
+                if (div) {
+                    div.style.display = 'none';  // Hide each div
+                }
+            });
+            
+            // Show the specific div based on button click
+            var selectedDiv = document.getElementById(divId);
+            if (selectedDiv) {
+                selectedDiv.style.display = 'block';  // Show the selected div
+            }
+            
+        }
+
+
+
+       
+
+
+        const startSpeechRecognitionButton = document.getElementById('startSpeechRecognition');
+        const transcriptionDiv = document.getElementById('transcription');
+
+        startSpeechRecognitionButton.addEventListener('click', startSpeechRecognition);
+
+        function startSpeechRecognition() {
+            const recognition = new webkitSpeechRecognition(); // Use webkitSpeechRecognition for compatibility
+
+            recognition.lang = 'en-US'; // Set the language for recognition
+
+            recognition.onresult = function (event) {
+                const result = event.results[0][0].transcript;
+                transcriptionDiv.textContent = result;
+            };
+
+            recognition.onend = function () {
+                console.log('Speech recognition ended.');
+            };
+
+            recognition.start();
+        }
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</body>
+
+</html>

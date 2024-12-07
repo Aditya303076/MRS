@@ -1,0 +1,108 @@
+<!--<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+<body>
+        <header>
+            <nav>
+                <div class="logo">Medical Center</div>
+                <ul class="nav-links">
+                    <li><a href="#">Demos</a></li>
+                    <li><a href="#">Pages</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Portfolio</a></li>
+                    <li><a href="#">Elements</a></li>
+                    <li><a href="#">Support</a></li>
+                </ul>
+                <button class="purchase-btn">Purchase Now</button>
+            </nav>
+        </header>
+    
+        <main>
+            <section class="hero">
+                <div class="content">
+                    <h1>Learn how to build better websites.</h1>
+                    <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium.</p>
+                    <div class="rating">
+                        <span>★★★★☆</span> (Average score: 4.9/5)
+                    </div>
+                    <form class="signup-form">
+                        <input type="text" placeholder="Your Name" required>
+                        <input type="email" placeholder="you@yoursite.com" required>
+                        <div class="radio-group">
+                            <label><input type="radio" name="skill" value="beginner" checked> Beginner</label>
+                            <label><input type="radio" name="skill" value="advanced"> Advanced</label>
+                        </div>
+                        <button type="submit">Claim your free first lesson</button>
+                    </form>
+                    <p class="disclaimer">You’ll receive your first lesson via email in less than a minute.</p>
+                </div>
+            </section>
+        </main>
+    </body>
+    </html>
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Second Page</title>
+
+        <link rel="stylesheet" href="style1.css">
+
+    </head>
+    <body>
+        <img src="D:\pics\doctor\360_F_328444050_AC8ydJFRJ08MqUCB1ITLm2YPIquyC9IC.jpg">
+    </body>
+    </html>-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Form</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style1.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container" style="display: flex;align-items: center;justify-content: center;">
+        <!-- <div class="thought">
+            <h3>
+                We Take care of Your Healthy Health 
+            </h3>
+        </div> -->
+        <div class="login-container">
+            <form action="/predict" method="post" class="login-form">
+                    <div class="input-group">
+                        <label for="symptoms">Select Symptoms:</label>
+                        <input type="text" id="symptoms" name="symptoms" placeholder="type systems such as itching, sleeping, aching etc">
+        
+                    </div>
+                    <br>
+                    <!-- <button type="button" id="startSpeechRecognition" class="btn btn-primary" style="margin-left:3px;border:1px solid white; border-radius:20px;">
+                        Start Speech Recognition
+                    </button>
+                    <br>
+         -->
+                    <!-- Display the transcribed text here -->
+                    <!-- <div name="mysysms" id="transcription"></div>
+        
+                    {% if message %}
+                    <p>{{ message }}</p>
+                    {% endif %} -->
+                    <br>
+        
+                    <button type="submit"><b><h3>Predict</h3></b></button>
+                </form>
+        </div>
+        
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</body>
+
+</html>
